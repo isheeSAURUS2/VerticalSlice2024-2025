@@ -9,8 +9,6 @@ public class MenuManager : MonoBehaviour
     [SerializeField] GameObject battleMenuStartButton, fightMenuStartButton;
     [SerializeField] GameObject battleMenu, fightMenu;
     bool isInBattleMenu = true;
-    // Start is called before the first frame update
-
     // Update is called once per frame
     void Update()
     {

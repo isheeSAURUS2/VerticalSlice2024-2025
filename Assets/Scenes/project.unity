@@ -158,6 +158,7 @@ RectTransform:
   - {fileID: 1093846044}
   - {fileID: 1301431172}
   - {fileID: 539377720}
+  - {fileID: 1621737682}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -523,9 +524,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'PlaceHolder
-
-'
+  m_text: Toxic
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a63d80162d4c6544d9b7d53f5e886712, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1276,7 +1275,7 @@ GameObject:
   - component: {fileID: 440218196}
   - component: {fileID: 440218195}
   m_Layer: 5
-  m_Name: Move 1
+  m_Name: discharge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1346,7 +1345,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 440218196}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &440218196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1590,7 +1601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ea850eb485d244fb7e4535d0e85468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BM: {fileID: 0}
+  BM: {fileID: 523761595}
 --- !u!114 &523761595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1607,6 +1618,7 @@ MonoBehaviour:
   enemyPokemon: {fileID: 665197931}
   enemyPKMType: 
   friendlyPKMType: 
+  turnIndex: 0
 --- !u!4 &523761596
 Transform:
   m_ObjectHideFlags: 0
@@ -1816,6 +1828,11 @@ MonoBehaviour:
   defense: 73
   specialAttack: 80
   attack: 43
+  level: 36
+  isPoisoned: 0
+  thisPokemonTurnIndex: 1
+  poisonDamage: 0
+  battleManager: {fileID: 523761595}
   type: 050000000c000000
   healthBar: {fileID: 1194273346}
   healthBarFill: {fileID: 801660692}
@@ -1833,7 +1850,7 @@ GameObject:
   - component: {fileID: 687890736}
   - component: {fileID: 687890735}
   m_Layer: 5
-  m_Name: Move 3
+  m_Name: Toxic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1903,7 +1920,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 687890736}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1260053717}
+        m_TargetAssemblyTypeName: Skillmanager, Assembly-CSharp
+        m_MethodName: Toxic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &687890736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2607,6 +2636,11 @@ MonoBehaviour:
   defense: 68
   specialAttack: 100
   attack: 79
+  level: 37
+  isPoisoned: 0
+  thisPokemonTurnIndex: 0
+  poisonDamage: 0
+  battleManager: {fileID: 523761595}
   type: 060000000a000000
   healthBar: {fileID: 325537839}
   healthBarFill: {fileID: 767563078}
@@ -2749,6 +2783,51 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1260053716
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1260053718}
+  - component: {fileID: 1260053717}
+  m_Layer: 0
+  m_Name: Skillmanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1260053717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260053716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ea850eb485d244fb7e4535d0e85468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BM: {fileID: 523761595}
+--- !u!4 &1260053718
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260053716}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -415, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1301431171
 GameObject:
   m_ObjectHideFlags: 0
@@ -3469,6 +3548,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1621737682 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4302398544466842975, guid: 675087f88f05b69469819eb0d36c52f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1817342723}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1731514023
 GameObject:
   m_ObjectHideFlags: 0
@@ -3778,6 +3863,80 @@ RectTransform:
   m_AnchoredPosition: {x: 715, y: -185}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1817342723
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 25206454}
+    m_Modifications:
+    - target: {fileID: 4302398544466842945, guid: 675087f88f05b69469819eb0d36c52f5,
+        type: 3}
+      propertyPath: m_Name
+      value: DialogueManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302398544466842945, guid: 675087f88f05b69469819eb0d36c52f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302398544466842975, guid: 675087f88f05b69469819eb0d36c52f5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302398544466842975, guid: 675087f88f05b69469819eb0d36c52f5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302398544466842975, guid: 675087f88f05b69469819eb0d36c52f5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302398544466842975, guid: 675087f88f05b69469819eb0d36c52f5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302398544466842975, guid: 675087f88f05b69469819eb0d36c52f5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302398544466842975, guid: 675087f88f05b69469819eb0d36c52f5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302398544466842975, guid: 675087f88f05b69469819eb0d36c52f5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302398544466842975, guid: 675087f88f05b69469819eb0d36c52f5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302398544466842975, guid: 675087f88f05b69469819eb0d36c52f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302398544466842975, guid: 675087f88f05b69469819eb0d36c52f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302398544466842975, guid: 675087f88f05b69469819eb0d36c52f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 675087f88f05b69469819eb0d36c52f5, type: 3}
 --- !u!1 &1848588752
 GameObject:
   m_ObjectHideFlags: 0
