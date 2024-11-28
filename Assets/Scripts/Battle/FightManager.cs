@@ -115,7 +115,7 @@ public class FightManager : MonoBehaviour
         }
         turnIndex++;
     }
-    public void PokemonAttacks()
+    public void PokemonAttackSequence()
     {
 
     }
