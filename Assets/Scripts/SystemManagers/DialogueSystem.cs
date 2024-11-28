@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DialogueSystem : MonoBehaviour
@@ -17,7 +18,6 @@ public class DialogueSystem : MonoBehaviour
     void Start()
     {
         dialogueText =  transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        TurnOffDialogBox();
         string filePath = Application.streamingAssetsPath + "/DialogueText.txt";
 
         if (File.Exists(filePath))
@@ -32,16 +32,19 @@ public class DialogueSystem : MonoBehaviour
     private void FixedUpdate()
     {
         timer += Time.deltaTime;
-        if (timer > 0.05f && textIndex < currentLine[textSelector].ToCharArray().Length)
-        {
-            displayText += currentLine[textSelector].ToCharArray()[textIndex];
-            dialogueText.text = displayText;
-            textIndex++;
-            timer = 0;
-        }
         if (timer > 2) TurnOffDialogBox();
-        if (textSelector != textSelector2) DialogueReset();
-        textSelector2 = textSelector;
+        if (textSelector != textSelector2)
+        {
+            //DialogueReset();
+            if (timer > 0.05f && textIndex < currentLine[textSelector].ToCharArray().Length)
+            {
+                displayText += currentLine[textSelector].ToCharArray()[textIndex];
+                dialogueText.text = displayText;
+                textIndex++;
+                timer = 0;
+            }
+            textSelector2 = textSelector;
+        }
     }
     private void DialogueReset()
     {
@@ -53,6 +56,7 @@ public class DialogueSystem : MonoBehaviour
     private void TurnOffDialogBox()
     {
         displayText = string.Empty;
+        textSelector = -1;
         dialogueText.text = displayText;
         for (int i = 0; i < transform.childCount; i++) transform.GetChild(i).gameObject.SetActive(false);
     }
