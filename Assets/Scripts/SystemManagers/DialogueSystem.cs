@@ -16,6 +16,8 @@ public class DialogueSystem : MonoBehaviour
     public float timer = 0;
     void Start()
     {
+        dialogueText =  transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        TurnOffDialogBox();
         string filePath = Application.streamingAssetsPath + "/DialogueText.txt";
 
         if (File.Exists(filePath))
@@ -25,11 +27,7 @@ public class DialogueSystem : MonoBehaviour
                 currentLine = reader.ReadToEnd().Split("\n");
             }
         }
-        else
-        {
-            Debug.LogError("Text file not found!");
-        }
-        TurnOffDialogBox();
+        else Debug.LogError("Text file not found!");
     }
     private void FixedUpdate()
     {
@@ -41,10 +39,7 @@ public class DialogueSystem : MonoBehaviour
             textIndex++;
             timer = 0;
         }
-        if (timer > 2)
-        {
-            TurnOffDialogBox();
-        }
+        if (timer > 2) TurnOffDialogBox();
         if (textSelector != textSelector2) DialogueReset();
         textSelector2 = textSelector;
     }

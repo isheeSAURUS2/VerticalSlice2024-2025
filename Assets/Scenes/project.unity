@@ -2115,6 +2115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BM: {fileID: 523761595}
+  menuManager: {fileID: 1093846045}
 --- !u!114 &523761595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3926,6 +3927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BM: {fileID: 523761595}
+  menuManager: {fileID: 1093846045}
 --- !u!4 &1260053718
 Transform:
   m_ObjectHideFlags: 0
@@ -5161,7 +5163,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4302398544466842944, guid: 675087f88f05b69469819eb0d36c52f5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 675087f88f05b69469819eb0d36c52f5, type: 3}
 --- !u!1 &1848588752
 GameObject:

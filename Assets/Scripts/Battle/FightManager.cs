@@ -9,10 +9,6 @@ public class FightManager : MonoBehaviour
     [SerializeField] private List<Pokemon.PKMType> enemyPKMType, friendlyPKMType = new List<Pokemon.PKMType>();
     Pokemon target, caster;
     public int turnIndex;
-    private void Start()
-    {
-       
-    }
     private void Update()
     {
         if (!enemyPokemon.typesAddedToBM)
@@ -117,8 +113,10 @@ public class FightManager : MonoBehaviour
                 target.attack -= 12;
             }
         }
-
         turnIndex++;
     }
+    public void PokemonAttacks()
+    {
 
+    }
 }

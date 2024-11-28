@@ -9,7 +9,6 @@ public class MenuManager : MonoBehaviour
     [SerializeField] GameObject battleMenuStartButton, fightMenuStartButton;
     [SerializeField] GameObject battleMenu, fightMenu;
     bool isInBattleMenu = true;
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Backspace))
@@ -45,6 +44,11 @@ public class MenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(fightMenuStartButton);
         fightMenu.SetActive(true);
+        battleMenu.SetActive(false);
+    }
+    public void TurnOffFightMenu()
+    {
+        fightMenu.SetActive(false);
         battleMenu.SetActive(false);
     }
 }

@@ -54,7 +54,6 @@ public class Pokemon : MonoBehaviour
             wasPoisonedThisTurn = true;
         }
     }
-
     private void Poison()
     {
         healthPoints -= poisonDamage;

@@ -7,8 +7,8 @@ using UnityEngine.Rendering;
 
 public class Skillmanager : MonoBehaviour
 {
-
     public FightManager BM;
+    public MenuManager menuManager;
     int ToxicPP;
     int VenoShockPP;
     int SparkPP;
@@ -19,20 +19,28 @@ public class Skillmanager : MonoBehaviour
     {
         BM.DoSkill(ToxicPP,0,100,moveType.Poison,true,true,StatusEffect.poison);
         ToxicPP--;
+        TurnOffFightMenu();
     }
     public void VenoShock()
     {
         BM.DoSkill(VenoShockPP, 65, 100, moveType.Poison, true, false,StatusEffect.none);
         VenoShockPP--;
+        TurnOffFightMenu();
     }
     public void Spark()
     {
         BM.DoSkill(SparkPP, 65, 100, moveType.Electric, true, false, StatusEffect.none);
         SparkPP--;
+        TurnOffFightMenu();
     }
     public void Discharge()
     {
         BM.DoSkill(DischargePP, 80, 100, moveType.Electric, true, false, StatusEffect.none);
         DischargePP--;
+        TurnOffFightMenu();
+    }
+    public void TurnOffFightMenu()
+    {
+        menuManager.TurnOffFightMenu();
     }
 }
