@@ -80,7 +80,7 @@ public class FightManager : MonoBehaviour
         {
             Debug.Log((((((((2 * caster.level) / 5) * power * (caster.specialAttack / target.specialDefense)) / 50) + 2) * (random / 100)) * effectivenessMult));
             Debug.Log(power + " " + caster.level + " " + caster.specialAttack + " " + target.specialDefense + " " + random + " " + effectivenessMult);
-            if (isMiss > accuracy)
+            if (isMiss < accuracy)
             {
                 if (isCrit <= 35.2)
                 {
@@ -129,7 +129,7 @@ public class FightManager : MonoBehaviour
     }
     public IEnumerator PokemonAttackSequence(float damage)
     {
-        dialogueManager.textSelector = 1;
+        //dialogueManager.textSelector = 1;
         yield return new WaitForSeconds(2);
         playerAnimator.Play("PokemonAttackAnimationForNow");
         enemyAnimator.Play("EnemyPokemonAttack");
@@ -144,7 +144,7 @@ public class FightManager : MonoBehaviour
     }
     private IEnumerator AttackMissed()
     {
-        dialogueManager.textSelector = 3;
+        //dialogueManager.textSelector = 3;
         yield return new WaitForSeconds(2);
         menuManager.SwitchToBattleMenu();
     }
