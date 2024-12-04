@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -10,8 +11,10 @@ public class FightManager : MonoBehaviour
     [SerializeField] private List<Pokemon.PKMType> enemyPKMType, friendlyPKMType = new List<Pokemon.PKMType>();
     [SerializeField] private MenuManager menuManager;
     [SerializeField] private DialogueSystem dialogueManager;
+    [SerializeField] private Skillmanager skillmanager = new Skillmanager();
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private Animator enemyAnimator;
+    bool isYourTurn = true;
     Pokemon target, caster;
     public int turnIndex;
     private void Start()
@@ -41,6 +44,11 @@ public class FightManager : MonoBehaviour
         if(turnIndex > 1)
         {
             turnIndex = 0;
+            isYourTurn = true;
+        }
+        if(turnIndex == 1)
+        {
+            Coroutine newRoutine = StartCoroutine(EnemyAttack());
         }
     }
     public void DoSkill(int pp, float power, int accuracy, Skillmanager.moveType moveType, bool isSpecial, bool hasStatusEffect, Skillmanager.StatusEffect statusType)
@@ -80,6 +88,8 @@ public class FightManager : MonoBehaviour
         {
             Debug.Log((((((((2 * caster.level) / 5) * power * (caster.specialAttack / target.specialDefense)) / 50) + 2) * (random / 100)) * effectivenessMult));
             Debug.Log(power + " " + caster.level + " " + caster.specialAttack + " " + target.specialDefense + " " + random + " " + effectivenessMult);
+            Debug.Log(caster.name);
+            Debug.Log(target.name);
             if (isMiss < accuracy)
             {
                 if (isCrit <= 35.2)
@@ -124,6 +134,10 @@ public class FightManager : MonoBehaviour
                 caster.healthPoints += target.attack;
                 target.attack -= 12;
             }
+            if(statusType == Skillmanager.StatusEffect.HealFromDamage)
+            {
+                caster.healthPoints += ((((((((2 * caster.level) / 5) * power * (caster.specialAttack / target.specialDefense)) / 50) + 2) * (random / 100)) * effectivenessMult) * 1.5f) / 2;
+            }
         }
         turnIndex++;
     }
@@ -148,4 +162,17 @@ public class FightManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         menuManager.SwitchToBattleMenu();
     }
-}
+    public IEnumerator EnemyAttack()
+    {
+        isYourTurn = false;
+        Debug.Log("enemy is going to attack");
+        yield return new WaitForSeconds(2);
+        if (!isYourTurn)
+        {
+            menuManager.TurnOffUI();
+            skillmanager.EnemySkills[UnityEngine.Random.Range(0, 3)]();
+            isYourTurn = true;
+        }
+        yield break;
+    }
+}   
