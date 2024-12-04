@@ -2,58 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class DialogueSystem : MonoBehaviour
 {
-    private StreamReader reader;
     [SerializeField] private TextMeshProUGUI dialogueText;
-    [SerializeField] public int textSelector;
-    private int textSelector2;
-    private int textIndex;
-    private string[] currentLine;
-    private string displayText;
+    private int characterIndex;
     public float timer = 0;
+    private string textDialogue = "";
+    private bool dialogBoxStatus = false;
     void Start()
     {
         dialogueText =  transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         TurnOffDialogBox();
-        string filePath = Application.streamingAssetsPath + "/DialogueText.txt";
-
-        if (File.Exists(filePath))
-        {
-            using (reader = new StreamReader(filePath))
-            {
-                currentLine = reader.ReadToEnd().Split("\n");
-            }
-        }
-        else Debug.LogError("Text file not found!");
+    }
+    public void Dialog(string text) // Function 
+    {
+        TurnOnDialogueBox();
+        textDialogue = text;
+        dialogBoxStatus = true;
     }
     private void FixedUpdate()
     {
         timer += Time.deltaTime;
-        if (timer > 0.05f && textIndex < currentLine[textSelector].ToCharArray().Length)
+        if (timer > 0.05f && characterIndex < textDialogue.ToCharArray().Length && dialogBoxStatus == true) // Split text into characters add 1 character to the dialogtext
         {
-            displayText += currentLine[textSelector].ToCharArray()[textIndex];
-            dialogueText.text = displayText;
-            textIndex++;
+            dialogueText.text += textDialogue.ToCharArray()[characterIndex];
+            characterIndex++;
             timer = 0;
         }
         if (timer > 2) TurnOffDialogBox();
-        if (textSelector != textSelector2) DialogueReset();
-        textSelector2 = textSelector;
     }
-    private void DialogueReset()
+    private void TurnOnDialogueBox()
     {
-        displayText = string.Empty;
+        dialogueText.text = string.Empty;
         timer = 0;
-        textIndex = 0;
+        characterIndex = 0;
         for (int i = 0; i < transform.childCount; i++) transform.GetChild(i).gameObject.SetActive(true);
     }
     private void TurnOffDialogBox()
     {
-        displayText = string.Empty;
-        dialogueText.text = displayText;
+        dialogBoxStatus = false;
+        dialogueText.text = string.Empty;
         for (int i = 0; i < transform.childCount; i++) transform.GetChild(i).gameObject.SetActive(false);
     }
 }
