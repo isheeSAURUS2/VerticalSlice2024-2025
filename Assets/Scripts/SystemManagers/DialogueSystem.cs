@@ -38,7 +38,7 @@ public class DialogueSystem : MonoBehaviour
     }
     private void TurnOnDialogueBox()
     {
-        dialogueText.text = string.Empty;
+        dialogueText.text = "";
         timer = 0;
         characterIndex = 0;
         for (int i = 0; i < transform.childCount; i++) transform.GetChild(i).gameObject.SetActive(true);
