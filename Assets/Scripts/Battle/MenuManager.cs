@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -61,5 +62,12 @@ public class MenuManager : MonoBehaviour
         {
             Menu[i].SetActive(false);
         }
+    }
+    public void ShowOnlyHPCard()
+    {
+        EnemyHPCard.SetActive(true);
+        PlayerHPCard.SetActive(true);
+        fightMenu.SetActive(false);
+        battleMenu.SetActive(false);
     }
 }
