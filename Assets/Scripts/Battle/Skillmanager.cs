@@ -10,6 +10,7 @@ public class Skillmanager : MonoBehaviour
 {
     public FightManager BM;
     public MenuManager menuManager;
+    [SerializeField] private DialogueSystem dialogBox;
     int ToxicPP;
     int VenoShockPP;
     int SparkPP;
@@ -32,6 +33,7 @@ public class Skillmanager : MonoBehaviour
 
     public void Toxic()
     {
+        dialogBox.Dialog("Toxtricity used Toxic.");
         StartCoroutine(BM.PokemonAttackSequence(ToxicPP, 0, 100, moveType.Poison, true, StatusEffect.poison, playerPokemon, enemyPokemon));
         ToxicPP--;
         TurnOffFightMenu();

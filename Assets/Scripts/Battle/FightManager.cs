@@ -105,8 +105,8 @@ public class FightManager : MonoBehaviour
     {
         float damage = 0;
         menuManager.ShowOnlyHPCard();
-        yield return new WaitForSeconds(2);
-        playerAnimator.Play("PokemonAttackAnimationForNow");
+        yield return new WaitForSeconds(1.5f);
+        playerAnimator.Play("PokemonAttackAnimationForNow"); // Play player attack Animation
         damage = DoSkill(pp,power,accuracy,moveType, isSpecial, statustype, attacker, defender);
         yield return new WaitForSeconds(2); 
         for (int i = 0; i < damage; i++)
@@ -115,7 +115,7 @@ public class FightManager : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         yield return new WaitForSeconds(2);
-        enemyAnimator.Play("EnemyPokemonAttack");
+        enemyAnimator.Play("EnemyPokemonAttack"); // Play enemy attack Animation
         damage = DoSkill(pp, power, accuracy, moveType, isSpecial, statustype, attacker, defender);
         yield return new WaitForSeconds(2);
         for (int i = 0; i < damage; i++)
@@ -124,7 +124,6 @@ public class FightManager : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         yield return new WaitForEndOfFrame();
-        menuManager.SwitchToBattleMenu();
+        menuManager.SwitchToBattleMenu(); // End battle scene
     }
-    
 }   

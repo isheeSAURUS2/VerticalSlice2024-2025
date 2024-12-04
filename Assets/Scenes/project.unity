@@ -2140,6 +2140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BM: {fileID: 523761595}
   menuManager: {fileID: 1093846045}
+  dialogBox: {fileID: 0}
   playerPokemon: {fileID: 0}
   enemyPokemon: {fileID: 0}
 --- !u!114 &523761595
@@ -4019,6 +4020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BM: {fileID: 523761595}
   menuManager: {fileID: 1093846045}
+  dialogBox: {fileID: 1621737683}
   playerPokemon: {fileID: 1017505372}
   enemyPokemon: {fileID: 665197931}
 --- !u!4 &1260053718

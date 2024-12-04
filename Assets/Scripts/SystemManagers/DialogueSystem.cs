@@ -45,7 +45,6 @@ public class DialogueSystem : MonoBehaviour
     }
     private void TurnOffDialogBox()
     {
-        if (dialogBoxStatus == true) menuManager.SwitchToBattleMenu();
         dialogBoxStatus = false;
         dialogueText.text = string.Empty;
         for (int i = 0; i < transform.childCount; i++) transform.GetChild(i).gameObject.SetActive(false);
