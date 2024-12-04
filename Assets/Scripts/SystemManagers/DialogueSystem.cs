@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DialogueSystem : MonoBehaviour
@@ -16,37 +17,34 @@ public class DialogueSystem : MonoBehaviour
     public float timer = 0;
     void Start()
     {
-        string filePath = Application.streamingAssetsPath + "/DialogueText.txt";
-
-        if (File.Exists(filePath))
-        {
-            using (reader = new StreamReader(filePath))
-            {
-                currentLine = reader.ReadToEnd().Split("\n");
-            }
-        }
-        else
-        {
-            Debug.LogError("Text file not found!");
-        }
-        TurnOffDialogBox();
+        dialogueText =  transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        
     }
     private void FixedUpdate()
     {
         timer += Time.deltaTime;
-        if (timer > 0.05f && textIndex < currentLine[textSelector].ToCharArray().Length)
+        if (timer > 1)
         {
-            displayText += currentLine[textSelector].ToCharArray()[textIndex];
+            DialogueTextFunction("werk dit?");
+        }
+    }
+    public void DialogueTextFunction(string text)
+    {
+        timer += Time.deltaTime;
+        for (int i = 0; i < text.Length; i++)
+        {
+            displayText += text.ToCharArray()[i];
             dialogueText.text = displayText;
-            textIndex++;
             timer = 0;
         }
-        if (timer > 2)
-        {
-            TurnOffDialogBox();
-        }
-        if (textSelector != textSelector2) DialogueReset();
-        textSelector2 = textSelector;
+        //if (timer > 0.05f && textIndex < text.Length)
+        //{
+        //    displayText += text.ToCharArray()[textIndex];
+        //    dialogueText.text = displayText;
+        //    textIndex++;
+        //    timer = 0;
+        //}
+        TurnOffDialogBox();
     }
     private void DialogueReset()
     {

@@ -2115,6 +2115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BM: {fileID: 523761595}
+  menuManager: {fileID: 1093846045}
 --- !u!114 &523761595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2131,6 +2132,10 @@ MonoBehaviour:
   enemyPokemon: {fileID: 665197931}
   enemyPKMType: 
   friendlyPKMType: 
+  menuManager: {fileID: 1093846045}
+  dialogueManager: {fileID: 1621737684}
+  playerAnimator: {fileID: 1017505373}
+  enemyAnimator: {fileID: 665197932}
   turnIndex: 0
 --- !u!4 &523761596
 Transform:
@@ -2335,6 +2340,7 @@ GameObject:
   - component: {fileID: 665197928}
   - component: {fileID: 665197927}
   - component: {fileID: 665197931}
+  - component: {fileID: 665197932}
   m_Layer: 0
   m_Name: EnemyPokemon
   m_TagString: Untagged
@@ -2450,6 +2456,27 @@ MonoBehaviour:
   healthBar: {fileID: 1194273346}
   healthBarFill: {fileID: 801660692}
   typesAddedToBM: 0
+--- !u!95 &665197932
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665197926}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 77fadc9ecd446874385915a7e73e61c3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &687890733
 GameObject:
   m_ObjectHideFlags: 0
@@ -3549,6 +3576,7 @@ GameObject:
   - component: {fileID: 1017505369}
   - component: {fileID: 1017505368}
   - component: {fileID: 1017505372}
+  - component: {fileID: 1017505373}
   m_Layer: 0
   m_Name: PlayerPokemon
   m_TagString: Untagged
@@ -3668,6 +3696,27 @@ MonoBehaviour:
   healthBar: {fileID: 325537839}
   healthBarFill: {fileID: 767563078}
   typesAddedToBM: 0
+--- !u!95 &1017505373
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017505367}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 90ccd35940ff14642811249272dab15d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1093846043
 GameObject:
   m_ObjectHideFlags: 0
@@ -3934,6 +3983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BM: {fileID: 523761595}
+  menuManager: {fileID: 1093846045}
 --- !u!4 &1260053718
 Transform:
   m_ObjectHideFlags: 0
@@ -4771,6 +4821,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1817342723}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1621737684 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1380993879962732281, guid: 675087f88f05b69469819eb0d36c52f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1817342723}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef06b245860a75c49971a9603a6e6e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1731514023
 GameObject:
   m_ObjectHideFlags: 0
@@ -5104,6 +5166,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 25206454}
     m_Modifications:
+    - target: {fileID: 4302398543921198831, guid: 675087f88f05b69469819eb0d36c52f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4302398544207095606, guid: 675087f88f05b69469819eb0d36c52f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4302398544466842945, guid: 675087f88f05b69469819eb0d36c52f5,
         type: 3}
       propertyPath: m_Name
@@ -5169,7 +5241,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4302398544466842944, guid: 675087f88f05b69469819eb0d36c52f5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 675087f88f05b69469819eb0d36c52f5, type: 3}
 --- !u!1 &1848588752
 GameObject:
