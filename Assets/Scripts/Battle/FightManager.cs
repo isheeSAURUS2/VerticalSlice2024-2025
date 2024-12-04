@@ -21,53 +21,15 @@ public class FightManager : MonoBehaviour
     {
         playerAnimator = friendlyPokemon.GetComponent<Animator>();
         //enemyAnimator = enemyAnimator.GetComponent<Animator>();
-        PokemonAttackSequence(5f);
+        //PokemonAttackSequence(5f);
     }
-    private void Update()
-    {
-        if (!enemyPokemon.typesAddedToBM)
-        {
-            for (int i = 0; i < enemyPokemon.type.Length; i++)
-            {
-                enemyPKMType.Add(enemyPokemon.type[i]);
-            }
-            enemyPokemon.typesAddedToBM = true;
-        }
-        if (!friendlyPokemon.typesAddedToBM)
-        {
-            for (int i = 0; i < friendlyPokemon.type.Length; i++)
-            {
-                friendlyPKMType.Add(friendlyPokemon.type[i]);
-            }
-            friendlyPokemon.typesAddedToBM = true;
-        }
-        if(turnIndex > 1)
-        {
-            turnIndex = 0;
-            isYourTurn = true;
-        }
-        if(turnIndex == 1)
-        {
-            Coroutine newRoutine = StartCoroutine(EnemyAttack());
-        }
-    }
-    public void DoSkill(int pp, float power, int accuracy, Skillmanager.moveType moveType, bool isSpecial, bool hasStatusEffect, Skillmanager.StatusEffect statusType)
+    public float DoSkill(int pp, float power, int accuracy, Skillmanager.moveType moveType, bool isSpecial, Skillmanager.StatusEffect statusType, Pokemon caster, Pokemon target)
     {
         float isMiss = UnityEngine.Random.Range(0, 100);
         float isCrit = UnityEngine.Random.Range(0, 100);
         float effectivenessMult = 1;
         float random = UnityEngine.Random.Range(85, 100);
-       
-        if (turnIndex == 0)
-        {
-            target = enemyPokemon;
-            caster = friendlyPokemon;
-        }
-        if (turnIndex == 1)
-        {
-            caster = enemyPokemon;
-            target = friendlyPokemon;
-        }
+        float damage = 0f;
         if (moveType == Skillmanager.moveType.Poison && target.type[0] == Pokemon.PKMType.Fairy && target.type[1] == Pokemon.PKMType.Grass)
         {
            effectivenessMult += 3;
@@ -84,8 +46,6 @@ public class FightManager : MonoBehaviour
         {
             effectivenessMult -= 0.5f;
         }
-        if (!hasStatusEffect)
-        {
             Debug.Log((((((((2 * caster.level) / 5) * power * (caster.specialAttack / target.specialDefense)) / 50) + 2) * (random / 100)) * effectivenessMult));
             Debug.Log(power + " " + caster.level + " " + caster.specialAttack + " " + target.specialDefense + " " + random + " " + effectivenessMult);
             Debug.Log(caster.name);
@@ -96,11 +56,11 @@ public class FightManager : MonoBehaviour
                 {
                     if (isSpecial)
                     {
-                        StartCoroutine(PokemonAttackSequence(((((((((2 * caster.level) / 5) * power * (caster.specialAttack / target.specialDefense)) / 50) + 2) * (random / 100)) * effectivenessMult) * 1.5f)));
+                        damage = (((((((2 * caster.level) / 5) * power * (caster.specialAttack / target.specialDefense)) / 50) + 2) * (random / 100)) * effectivenessMult) * 1.5f;
                     }
                     if (!isSpecial)
                     {
-                        StartCoroutine(PokemonAttackSequence(((((((((2 * caster.level) / 5) * power * (caster.attack / target.defense)) / 50) + 2) * (random / 100)) * effectivenessMult) * 1.5f)));
+                        damage = (((((((2 * caster.level) / 5) * power * (caster.attack / target.defense)) / 50) + 2) * (random / 100)) * effectivenessMult) * 1.5f;
                     }
 
                 }
@@ -108,11 +68,11 @@ public class FightManager : MonoBehaviour
                 {
                     if (isSpecial)
                     {
-                        StartCoroutine(PokemonAttackSequence((((((((2 * caster.level) / 5) * power * (caster.specialAttack / target.specialDefense)) / 50) + 2) * (random / 100)) * effectivenessMult)));
+                        damage = ((((((2 * caster.level) / 5) * power * (caster.specialAttack / target.specialDefense)) / 50) + 2) * (random / 100)) * effectivenessMult;
                     }
                     if (!isSpecial)
                     {
-                        StartCoroutine(PokemonAttackSequence((((((((2 * caster.level) / 5) * power * (caster.attack / target.defense)) / 50) + 2) * (random / 100)) * effectivenessMult)));
+                        damage = ((((((2 * caster.level) / 5) * power * (caster.attack / target.defense)) / 50) + 2) * (random / 100)) * effectivenessMult;
                     }
 
                 }
@@ -120,10 +80,9 @@ public class FightManager : MonoBehaviour
             else
             {
                 // Miss
-                StartCoroutine(AttackMissed());
             }
-        }
-        if (hasStatusEffect)
+        
+        if (statusType != Skillmanager.StatusEffect.none)
         {
             if (statusType == Skillmanager.StatusEffect.poison)
             {
@@ -139,40 +98,33 @@ public class FightManager : MonoBehaviour
                 caster.healthPoints += ((((((((2 * caster.level) / 5) * power * (caster.specialAttack / target.specialDefense)) / 50) + 2) * (random / 100)) * effectivenessMult) * 1.5f) / 2;
             }
         }
-        turnIndex++;
+        Debug.Log("damage is "+damage);
+        return damage;
     }
-    public IEnumerator PokemonAttackSequence(float damage)
+    public IEnumerator PokemonAttackSequence(int pp, float power, int accuracy, Skillmanager.moveType moveType, bool isSpecial, Skillmanager.StatusEffect statustype,Pokemon attacker,Pokemon defender)
     {
-        //dialogueManager.textSelector = 1;
+        float damage = 0;
+        menuManager.ShowOnlyHPCard();
         yield return new WaitForSeconds(2);
         playerAnimator.Play("PokemonAttackAnimationForNow");
+        damage = DoSkill(pp,power,accuracy,moveType, isSpecial, statustype, attacker, defender);
+        yield return new WaitForSeconds(2); 
+        for (int i = 0; i < damage; i++)
+        {
+            defender.healthPoints--;
+            yield return new WaitForSeconds(0.01f);
+        }
+        yield return new WaitForSeconds(2);
         enemyAnimator.Play("EnemyPokemonAttack");
+        damage = DoSkill(pp, power, accuracy, moveType, isSpecial, statustype, attacker, defender);
         yield return new WaitForSeconds(2);
         for (int i = 0; i < damage; i++)
         {
-            target.healthPoints--;
+            attacker.healthPoints--;
             yield return new WaitForSeconds(0.01f);
         }
         yield return new WaitForEndOfFrame();
         menuManager.SwitchToBattleMenu();
     }
-    private IEnumerator AttackMissed()
-    {
-        //dialogueManager.textSelector = 3;
-        yield return new WaitForSeconds(2);
-        menuManager.SwitchToBattleMenu();
-    }
-    public IEnumerator EnemyAttack()
-    {
-        isYourTurn = false;
-        Debug.Log("enemy is going to attack");
-        yield return new WaitForSeconds(2);
-        if (!isYourTurn)
-        {
-            menuManager.TurnOffUI();
-            skillmanager.EnemySkills[UnityEngine.Random.Range(0, 3)]();
-            isYourTurn = true;
-        }
-        yield break;
-    }
+    
 }   

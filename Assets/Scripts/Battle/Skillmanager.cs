@@ -21,6 +21,7 @@ public class Skillmanager : MonoBehaviour
     public List<Action> EnemySkills = new List<Action>();
     public enum StatusEffect {poison, ATKDown,HealFromDamage, none};
     public enum moveType { Water, Fire, Ground, Flying, Steel, Fairy, Poison, Dragon, Rock, Psycic, Electric, Fighting, Grass, Dark, Ghost, Bug, Ice, Normal }
+    [SerializeField] private Pokemon playerPokemon, enemyPokemon;
     private void Start()
     {
         EnemySkills.Add(PoisonPowder);
@@ -31,25 +32,25 @@ public class Skillmanager : MonoBehaviour
 
     public void Toxic()
     {
-        BM.DoSkill(ToxicPP,0,100,moveType.Poison,true,true,StatusEffect.poison);
+        StartCoroutine(BM.PokemonAttackSequence(ToxicPP, 0, 100, moveType.Poison, true, StatusEffect.poison, playerPokemon, enemyPokemon));
         ToxicPP--;
         TurnOffFightMenu();
     }
     public void VenoShock()
     {
-        BM.DoSkill(VenoShockPP, 65, 100, moveType.Poison, true, false,StatusEffect.none);
+        StartCoroutine(BM.PokemonAttackSequence(VenoShockPP,65,100,moveType.Poison,true,StatusEffect.none,playerPokemon,enemyPokemon));
         VenoShockPP--;
         TurnOffFightMenu();
     }
     public void Spark()
     {
-        BM.DoSkill(SparkPP, 65, 100, moveType.Electric, true, false, StatusEffect.none);
+        StartCoroutine(BM.PokemonAttackSequence(SparkPP, 65, 100, moveType.Electric, true, StatusEffect.none, playerPokemon, enemyPokemon));
         SparkPP--;
         TurnOffFightMenu();
     }
     public void Discharge()
     {
-        BM.DoSkill(DischargePP, 80, 100, moveType.Electric, true, false, StatusEffect.none);
+        StartCoroutine(BM.PokemonAttackSequence(DischargePP, 80, 100, moveType.Electric, true, StatusEffect.none, playerPokemon, enemyPokemon));
         DischargePP--;
         TurnOffFightMenu();
     }
@@ -59,25 +60,25 @@ public class Skillmanager : MonoBehaviour
     }
     public void PoisonPowder()
     {
-        BM.DoSkill(PoisonPowderPP, 0, 100, moveType.Poison, true, true, StatusEffect.poison);
+        //BM.DoSkill(PoisonPowderPP, 0, 100, moveType.Poison, true, true, StatusEffect.poison);
         PoisonPowderPP--;
         TurnOffFightMenu();
     }
     public void DazzlingGleam()
     {
-        BM.DoSkill(DazzlingGleamPP, 80, 100, moveType.Fairy, true, false, StatusEffect.none);
+        //BM.DoSkill(DazzlingGleamPP, 80, 100, moveType.Fairy, true, false, StatusEffect.none);
         DazzlingGleamPP--;
         TurnOffFightMenu();
     }
     public void StrengthSap()
     {
-        BM.DoSkill(StrengthSapPP, 0, 100, moveType.Grass, true, true, StatusEffect.ATKDown);
+        //BM.DoSkill(StrengthSapPP, 0, 100, moveType.Grass, true, true, StatusEffect.ATKDown);
         StrengthSapPP--;
         TurnOffFightMenu();
     }
     public void GigaDrain()
     {
-        BM.DoSkill(GigaDrainPP, 75, 100, moveType.Grass, true, true, StatusEffect.HealFromDamage);
+        //BM.DoSkill(GigaDrainPP, 75, 100, moveType.Grass, true, true, StatusEffect.HealFromDamage);
         GigaDrainPP--;
         TurnOffFightMenu();
     }
