@@ -20,10 +20,6 @@ public class Pokemon : MonoBehaviour
     public float poisonDamage = 6.25f;
     [SerializeField] private FightManager battleManager;
     [SerializeField] private Skillmanager skillManager = new Skillmanager();
-    private List<string> skills = new List<string>() {"Toxic", "Venoshock", "Discharge", "Spark"};
-    public List<Action> skillList;
-    [Dropdown("skills")]
-    public string[] skillsLearnt;   
     public enum PKMType{Water, Fire, Ground, Flying, Steel, Fairy, Poison, Dragon, Rock, Psycic, Electric, Fighting, Grass, Dark, Ghost, Bug, Ice, Normal};
     public PKMType[] type;
     [SerializeField] Slider healthBar;
@@ -36,10 +32,6 @@ public class Pokemon : MonoBehaviour
     {
         
         healthBar.maxValue = maxHealthPoints;
-        for (int i = 0; i < skillsLearnt.Length; i++)
-        {
-            skillList.Add(skillManager.skillDictionary[skillsLearnt[i]]);
-        }
     }
     private void Update()
     {

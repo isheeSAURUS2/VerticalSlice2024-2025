@@ -14,16 +14,19 @@ public class Skillmanager : MonoBehaviour
     int VenoShockPP;
     int SparkPP;
     int DischargePP;
-    public Dictionary<string, Action> skillDictionary = new Dictionary<string, Action>();
-    public enum StatusEffect {poison, ATKDown, none};
-    public enum moveType {Water, Fire, Ground, Flying, Steel, Fairy, Poison, Dragon, Rock, Psycic, Electric, Fighting, Grass, Dark, Ghost, Bug, Ice, Normal}
-
+    int PoisonPowderPP;
+    int DazzlingGleamPP;
+    int StrengthSapPP;
+    int GigaDrainPP;
+    public List<Action> EnemySkills = new List<Action>();
+    public enum StatusEffect {poison, ATKDown,HealFromDamage, none};
+    public enum moveType { Water, Fire, Ground, Flying, Steel, Fairy, Poison, Dragon, Rock, Psycic, Electric, Fighting, Grass, Dark, Ghost, Bug, Ice, Normal }
     private void Start()
     {
-        skillDictionary.Add("Toxic", Toxic);
-        skillDictionary.Add("Venoshock", VenoShock);
-        skillDictionary.Add("Spark", Spark);
-        skillDictionary.Add("Discharge", Discharge);
+        EnemySkills.Add(PoisonPowder);
+        EnemySkills.Add(StrengthSap);
+        EnemySkills.Add(DazzlingGleam);
+        EnemySkills.Add(GigaDrain);
     }
 
     public void Toxic()
@@ -53,5 +56,29 @@ public class Skillmanager : MonoBehaviour
     public void TurnOffFightMenu()
     {
         menuManager.TurnOffFightMenu();
+    }
+    public void PoisonPowder()
+    {
+        BM.DoSkill(PoisonPowderPP, 0, 100, moveType.Poison, true, true, StatusEffect.poison);
+        PoisonPowderPP--;
+        TurnOffFightMenu();
+    }
+    public void DazzlingGleam()
+    {
+        BM.DoSkill(DazzlingGleamPP, 80, 100, moveType.Fairy, true, false, StatusEffect.none);
+        DazzlingGleamPP--;
+        TurnOffFightMenu();
+    }
+    public void StrengthSap()
+    {
+        BM.DoSkill(StrengthSapPP, 0, 100, moveType.Grass, true, true, StatusEffect.ATKDown);
+        StrengthSapPP--;
+        TurnOffFightMenu();
+    }
+    public void GigaDrain()
+    {
+        BM.DoSkill(GigaDrainPP, 75, 100, moveType.Grass, true, true, StatusEffect.HealFromDamage);
+        GigaDrainPP--;
+        TurnOffFightMenu();
     }
 }
