@@ -153,9 +153,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1093846044}
   - {fileID: 893468417}
   - {fileID: 1848588753}
-  - {fileID: 1093846044}
   - {fileID: 1301431172}
   - {fileID: 539377720}
   - {fileID: 1621737682}
@@ -1187,7 +1187,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 268878602}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1621737683}
+        m_TargetAssemblyTypeName: DialogueSystem, Assembly-CSharp
+        m_MethodName: Dialog
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: You cannot run away from this battle.
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &268878602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2132,10 +2144,6 @@ MonoBehaviour:
   enemyPokemon: {fileID: 665197931}
   enemyPKMType: 
   friendlyPKMType: 
-  menuManager: {fileID: 1093846045}
-  dialogueManager: {fileID: 1621737684}
-  playerAnimator: {fileID: 1017505373}
-  enemyAnimator: {fileID: 665197932}
   turnIndex: 0
 --- !u!4 &523761596
 Transform:
@@ -2165,7 +2173,7 @@ GameObject:
   - component: {fileID: 539377721}
   m_Layer: 5
   m_Name: PlayerHPCard
-  m_TagString: Untagged
+  m_TagString: UIToDeactivate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2177,7 +2185,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539377719}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4.81052, y: 1.2417, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2188,7 +2196,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -789.5, y: -461.75}
+  m_AnchoredPosition: {x: -789.5, y: -461.75003}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &539377721
@@ -2340,7 +2348,6 @@ GameObject:
   - component: {fileID: 665197928}
   - component: {fileID: 665197927}
   - component: {fileID: 665197931}
-  - component: {fileID: 665197932}
   m_Layer: 0
   m_Name: EnemyPokemon
   m_TagString: Untagged
@@ -2450,33 +2457,10 @@ MonoBehaviour:
   thisPokemonTurnIndex: 1
   poisonDamage: 0
   battleManager: {fileID: 523761595}
-  skillManager: {fileID: 0}
-  skillsLearnt: []
   type: 050000000c000000
   healthBar: {fileID: 1194273346}
   healthBarFill: {fileID: 801660692}
   typesAddedToBM: 0
---- !u!95 &665197932
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 665197926}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 77fadc9ecd446874385915a7e73e61c3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &687890733
 GameObject:
   m_ObjectHideFlags: 0
@@ -3161,7 +3145,7 @@ GameObject:
   - component: {fileID: 893468417}
   m_Layer: 5
   m_Name: Menu
-  m_TagString: Untagged
+  m_TagString: UIToDeactivate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3173,7 +3157,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893468416}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3183,11 +3167,11 @@ RectTransform:
   - {fileID: 294209614}
   - {fileID: 268878600}
   m_Father: {fileID: 25206454}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.000030517578}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &952507138
@@ -3576,7 +3560,6 @@ GameObject:
   - component: {fileID: 1017505369}
   - component: {fileID: 1017505368}
   - component: {fileID: 1017505372}
-  - component: {fileID: 1017505373}
   m_Layer: 0
   m_Name: PlayerPokemon
   m_TagString: Untagged
@@ -3686,37 +3669,10 @@ MonoBehaviour:
   thisPokemonTurnIndex: 0
   poisonDamage: 0
   battleManager: {fileID: 523761595}
-  skillManager: {fileID: 1260053717}
-  skillsLearnt:
-  - 
-  - Venoshock
-  - Discharge
-  - Spark
   type: 060000000a000000
   healthBar: {fileID: 325537839}
   healthBarFill: {fileID: 767563078}
   typesAddedToBM: 0
---- !u!95 &1017505373
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017505367}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 90ccd35940ff14642811249272dab15d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1093846043
 GameObject:
   m_ObjectHideFlags: 0
@@ -3729,7 +3685,7 @@ GameObject:
   - component: {fileID: 1093846045}
   m_Layer: 0
   m_Name: MenuManager
-  m_TagString: Untagged
+  m_TagString: UIToDeactivate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3747,7 +3703,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 25206454}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1093846045
 MonoBehaviour:
@@ -3765,6 +3721,8 @@ MonoBehaviour:
   fightMenuStartButton: {fileID: 440218193}
   battleMenu: {fileID: 893468416}
   fightMenu: {fileID: 1848588752}
+  EnemyHPCard: {fileID: 1301431171}
+  PlayerHPCard: {fileID: 539377719}
 --- !u!1 &1194273344
 GameObject:
   m_ObjectHideFlags: 0
@@ -4012,7 +3970,7 @@ GameObject:
   - component: {fileID: 1301431173}
   m_Layer: 5
   m_Name: EnemyHPCard
-  m_TagString: Untagged
+  m_TagString: UIToDeactivate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4024,7 +3982,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1301431171}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4.7490935, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4821,7 +4779,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1817342723}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1621737684 stripped
+--- !u!114 &1621737683 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1380993879962732281, guid: 675087f88f05b69469819eb0d36c52f5,
     type: 3}
@@ -5166,16 +5124,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 25206454}
     m_Modifications:
-    - target: {fileID: 4302398543921198831, guid: 675087f88f05b69469819eb0d36c52f5,
+    - target: {fileID: 1380993879962732281, guid: 675087f88f05b69469819eb0d36c52f5,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4302398544207095606, guid: 675087f88f05b69469819eb0d36c52f5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: menuManager
+      value: 
+      objectReference: {fileID: 1093846045}
     - target: {fileID: 4302398544466842945, guid: 675087f88f05b69469819eb0d36c52f5,
         type: 3}
       propertyPath: m_Name
@@ -5184,7 +5137,7 @@ PrefabInstance:
     - target: {fileID: 4302398544466842945, guid: 675087f88f05b69469819eb0d36c52f5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4302398544466842975, guid: 675087f88f05b69469819eb0d36c52f5,
         type: 3}
@@ -5255,7 +5208,7 @@ GameObject:
   - component: {fileID: 1848588753}
   m_Layer: 5
   m_Name: FightMenu
-  m_TagString: Untagged
+  m_TagString: UIToDeactivate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5267,7 +5220,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848588752}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5277,11 +5230,11 @@ RectTransform:
   - {fileID: 687890734}
   - {fileID: 2013554220}
   m_Father: {fileID: 25206454}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.000030517578}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1939872417

@@ -8,6 +8,7 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] GameObject battleMenuStartButton, fightMenuStartButton;
     [SerializeField] GameObject battleMenu, fightMenu;
+    [SerializeField] GameObject EnemyHPCard, PlayerHPCard;
     bool isInBattleMenu = true;
     void Update()
     {
@@ -32,6 +33,8 @@ public class MenuManager : MonoBehaviour
     }
     public void SwitchToBattleMenu()
     {
+        EnemyHPCard.SetActive(true);
+        PlayerHPCard.SetActive(true);
         isInBattleMenu = true;
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(battleMenuStartButton);
@@ -50,5 +53,13 @@ public class MenuManager : MonoBehaviour
     {
         fightMenu.SetActive(false);
         battleMenu.SetActive(false);
+    }
+    public void TurnOffUI()
+    {
+        GameObject[] Menu = GameObject.FindGameObjectsWithTag("UIToDeactivate");
+        for (int i = 0; i < Menu.Length; i++)
+        {
+            Menu[i].SetActive(false);
+        }
     }
 }
