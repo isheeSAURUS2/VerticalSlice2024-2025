@@ -35,6 +35,10 @@ public class FightManager : MonoBehaviour
         {
             turnIndex = 0;
         }
+        if(turnIndex == 1)
+        {
+
+        }
     }
     public void DoSkill(int pp, float power, int accuracy, Skillmanager.moveType moveType, bool isSpecial, bool hasStatusEffect, Skillmanager.StatusEffect statusType)
     {
@@ -77,6 +81,7 @@ public class FightManager : MonoBehaviour
             {
                 if (isCrit <= 35.2)
                 {
+                    Debug.Log("crit");
                     if (isSpecial)
                     {
                         target.healthPoints -= ((((((((2 * caster.level) / 5) * power * (caster.specialAttack / target.specialDefense)) / 50) + 2) * (random / 100)) * effectivenessMult) * 1.5f);
@@ -102,7 +107,7 @@ public class FightManager : MonoBehaviour
             }
             else
             {
-                //miss
+                Debug.Log("miss");
             }
         }
         if (hasStatusEffect)

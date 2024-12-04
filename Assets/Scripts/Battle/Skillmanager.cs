@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
@@ -13,8 +14,18 @@ public class Skillmanager : MonoBehaviour
     int VenoShockPP;
     int SparkPP;
     int DischargePP;
+    public Dictionary<string, Action> skillDictionary = new Dictionary<string, Action>();
     public enum StatusEffect {poison, ATKDown, none};
     public enum moveType {Water, Fire, Ground, Flying, Steel, Fairy, Poison, Dragon, Rock, Psycic, Electric, Fighting, Grass, Dark, Ghost, Bug, Ice, Normal}
+
+    private void Start()
+    {
+        skillDictionary.Add("Toxic", Toxic);
+        skillDictionary.Add("Venoshock", VenoShock);
+        skillDictionary.Add("Spark", Spark);
+        skillDictionary.Add("Discharge", Discharge);
+    }
+
     public void Toxic()
     {
         BM.DoSkill(ToxicPP,0,100,moveType.Poison,true,true,StatusEffect.poison);
