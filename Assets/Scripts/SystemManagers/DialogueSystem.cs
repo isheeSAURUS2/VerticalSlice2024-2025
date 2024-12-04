@@ -7,9 +7,10 @@ using UnityEngine;
 
 public class DialogueSystem : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private MenuManager menuManager;
+    private TextMeshProUGUI dialogueText;
     private int characterIndex;
-    public float timer = 0;
+    private float timer = 0;
     private string textDialogue = "";
     private bool dialogBoxStatus = false;
     void Start()
@@ -19,6 +20,7 @@ public class DialogueSystem : MonoBehaviour
     }
     public void Dialog(string text) // Function 
     {
+        menuManager.TurnOffUI();
         TurnOnDialogueBox();
         textDialogue = text;
         dialogBoxStatus = true;
@@ -43,6 +45,7 @@ public class DialogueSystem : MonoBehaviour
     }
     private void TurnOffDialogBox()
     {
+        if (dialogBoxStatus == true) menuManager.SwitchToBattleMenu();
         dialogBoxStatus = false;
         dialogueText.text = string.Empty;
         for (int i = 0; i < transform.childCount; i++) transform.GetChild(i).gameObject.SetActive(false);
