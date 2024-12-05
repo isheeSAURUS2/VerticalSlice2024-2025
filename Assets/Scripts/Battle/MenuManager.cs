@@ -11,6 +11,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] GameObject battleMenu, fightMenu;
     [SerializeField] GameObject EnemyHPCard, PlayerHPCard;
     bool isInBattleMenu = true;
+    public bool inBattleSequence = false;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Backspace))

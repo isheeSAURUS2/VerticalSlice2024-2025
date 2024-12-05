@@ -15,10 +15,10 @@ public class Skillmanager : MonoBehaviour
     int VenoShockPP;
     int SparkPP;
     int DischargePP;
-    int PoisonPowderPP;
-    int DazzlingGleamPP;
-    int StrengthSapPP;
-    int GigaDrainPP;
+    public int PoisonPowderPP;
+    public int DazzlingGleamPP;
+    public int StrengthSapPP;
+    public int GigaDrainPP;
     public List<Action> EnemySkills = new List<Action>();
     public enum StatusEffect {poison, ATKDown,HealFromDamage, none};
     public enum moveType { Water, Fire, Ground, Flying, Steel, Fairy, Poison, Dragon, Rock, Psycic, Electric, Fighting, Grass, Dark, Ghost, Bug, Ice, Normal }
@@ -40,18 +40,21 @@ public class Skillmanager : MonoBehaviour
     }
     public void VenoShock()
     {
+        dialogBox.Dialog("Toxtricity used Venoshock.");
         StartCoroutine(BM.PokemonAttackSequence(VenoShockPP,65,100,moveType.Poison,true,StatusEffect.none,playerPokemon,enemyPokemon));
         VenoShockPP--;
         TurnOffFightMenu();
     }
     public void Spark()
     {
+        dialogBox.Dialog("Toxtricity used Spark.");
         StartCoroutine(BM.PokemonAttackSequence(SparkPP, 65, 100, moveType.Electric, true, StatusEffect.none, playerPokemon, enemyPokemon));
         SparkPP--;
         TurnOffFightMenu();
     }
     public void Discharge()
     {
+        dialogBox.Dialog("Toxtricity used Discharge.");
         StartCoroutine(BM.PokemonAttackSequence(DischargePP, 80, 100, moveType.Electric, true, StatusEffect.none, playerPokemon, enemyPokemon));
         DischargePP--;
         TurnOffFightMenu();

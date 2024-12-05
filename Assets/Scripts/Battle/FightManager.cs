@@ -20,6 +20,7 @@ public class FightManager : MonoBehaviour
     private void Start()
     {
         playerAnimator = friendlyPokemon.GetComponent<Animator>();
+        menuManager.SwitchToBattleMenu();
         //enemyAnimator = enemyAnimator.GetComponent<Animator>();
         //PokemonAttackSequence(5f);
     }
@@ -101,29 +102,68 @@ public class FightManager : MonoBehaviour
         Debug.Log("damage is "+damage);
         return damage;
     }
-    public IEnumerator PokemonAttackSequence(int pp, float power, int accuracy, Skillmanager.moveType moveType, bool isSpecial, Skillmanager.StatusEffect statustype,Pokemon attacker,Pokemon defender)
+    public IEnumerator PokemonAttackSequence(int pp, float power, int accuracy, Skillmanager.moveType moveType, bool isSpecial, Skillmanager.StatusEffect statustype,Pokemon player,Pokemon enemy)
     {
+        // texbox
+        menuManager.inBattleSequence = true;
+        
+        
         float damage = 0;
-        menuManager.ShowOnlyHPCard();
-        yield return new WaitForSeconds(1.5f);
+        
+        yield return new WaitForSeconds(1.9f);
         playerAnimator.Play("PokemonAttackAnimationForNow"); // Play player attack Animation
-        damage = DoSkill(pp,power,accuracy,moveType, isSpecial, statustype, attacker, defender);
+        damage = DoSkill(pp,power,accuracy,moveType, isSpecial, statustype, player, enemy);
         yield return new WaitForSeconds(2); 
         for (int i = 0; i < damage; i++)
         {
-            defender.healthPoints--;
+            enemy.healthPoints--;
             yield return new WaitForSeconds(0.01f);
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4f);
+        damage = EnemyMove(); //textvox
+        
+        yield return new WaitForSeconds(2f);
         enemyAnimator.Play("EnemyPokemonAttack"); // Play enemy attack Animation
-        damage = DoSkill(pp, power, accuracy, moveType, isSpecial, statustype, attacker, defender);
+        
         yield return new WaitForSeconds(2);
         for (int i = 0; i < damage; i++)
         {
-            attacker.healthPoints--;
+            player.healthPoints--;
             yield return new WaitForSeconds(0.01f);
         }
         yield return new WaitForEndOfFrame();
+        menuManager.inBattleSequence = false;
         menuManager.SwitchToBattleMenu(); // End battle scene
+    }
+    public float EnemyMove()
+    {
+        float random;
+        random = UnityEngine.Random.Range(0, 3);
+        random = Mathf.Round(random);
+        if (random == 0) 
+        {
+            dialogueManager.Dialog("Shiinotic used Poison Powder");
+            
+            return DoSkill(skillmanager.PoisonPowderPP, 0, 100, Skillmanager.moveType.Poison, true, Skillmanager.StatusEffect.poison, enemyPokemon, friendlyPokemon);
+        }
+        if (random == 1)
+        {
+            dialogueManager.Dialog("Shiinotic used Dazzling Gleam");
+            
+            return DoSkill(skillmanager.DazzlingGleamPP, 80, 100, Skillmanager.moveType.Fairy, true, Skillmanager.StatusEffect.none, enemyPokemon, friendlyPokemon);
+        }
+        if (random == 2)
+        {
+            dialogueManager.Dialog("Shiinotic used Strength Sap");
+            
+            return DoSkill(skillmanager.StrengthSapPP, 0, 100, Skillmanager.moveType.Grass, true, Skillmanager.StatusEffect.ATKDown, enemyPokemon, friendlyPokemon);
+        }
+        if (random == 3)
+        {
+            dialogueManager.Dialog("Shiinotic used Giga Drain");
+            
+            return DoSkill(skillmanager.GigaDrainPP, 75, 100, Skillmanager.moveType.Grass, true, Skillmanager.StatusEffect.HealFromDamage, enemyPokemon, friendlyPokemon);
+        }
+        return 0f;
     }
 }   
