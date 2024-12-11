@@ -14,6 +14,7 @@ public class FightManager : MonoBehaviour
     [SerializeField] private Skillmanager skillmanager = new Skillmanager();
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private Animator enemyAnimator;
+    [SerializeField]private Death deathScript;
     bool isYourTurn = true;
     Pokemon target, caster;
     public int turnIndex;
@@ -23,6 +24,17 @@ public class FightManager : MonoBehaviour
         menuManager.SwitchToBattleMenu();
         //enemyAnimator = enemyAnimator.GetComponent<Animator>();
         //PokemonAttackSequence(5f);
+    }
+    private void Update()
+    {
+        if (friendlyPokemon.healthPoints <= 0f)
+        {
+            deathScript.KillPlayer();
+        }
+        else if (enemyPokemon.healthPoints <= 0f)
+        {
+            deathScript.KillEnemy();
+        }
     }
     public float DoSkill(int pp, float power, int accuracy, Skillmanager.moveType moveType, bool isSpecial, Skillmanager.StatusEffect statusType, Pokemon caster, Pokemon target)
     {
@@ -49,8 +61,8 @@ public class FightManager : MonoBehaviour
         }
             Debug.Log((((((((2 * caster.level) / 5) * power * (caster.specialAttack / target.specialDefense)) / 50) + 2) * (random / 100)) * effectivenessMult));
             Debug.Log(power + " " + caster.level + " " + caster.specialAttack + " " + target.specialDefense + " " + random + " " + effectivenessMult);
-            Debug.Log(caster.name);
-            Debug.Log(target.name);
+            Debug.Log("caster: "+caster.name);
+            Debug.Log("target: " + target.name);
             if (isMiss < accuracy)
             {
                 if (isCrit <= 35.2)
