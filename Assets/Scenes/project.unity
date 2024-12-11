@@ -2141,6 +2141,10 @@ MonoBehaviour:
   BM: {fileID: 523761595}
   menuManager: {fileID: 1093846045}
   dialogBox: {fileID: 0}
+  PoisonPowderPP: 0
+  DazzlingGleamPP: 0
+  StrengthSapPP: 0
+  GigaDrainPP: 0
   playerPokemon: {fileID: 0}
   enemyPokemon: {fileID: 0}
 --- !u!114 &523761595
@@ -3801,6 +3805,7 @@ MonoBehaviour:
   fightMenu: {fileID: 1848588752}
   EnemyHPCard: {fileID: 1301431171}
   PlayerHPCard: {fileID: 539377719}
+  inBattleSequence: 0
 --- !u!1 &1194273344
 GameObject:
   m_ObjectHideFlags: 0
@@ -4021,6 +4026,10 @@ MonoBehaviour:
   BM: {fileID: 523761595}
   menuManager: {fileID: 1093846045}
   dialogBox: {fileID: 1621737683}
+  PoisonPowderPP: 0
+  DazzlingGleamPP: 0
+  StrengthSapPP: 0
+  GigaDrainPP: 0
   playerPokemon: {fileID: 1017505372}
   enemyPokemon: {fileID: 665197931}
 --- !u!4 &1260053718
