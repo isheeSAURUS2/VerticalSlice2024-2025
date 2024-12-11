@@ -17,6 +17,7 @@ public class DialogueSystem : MonoBehaviour
     {
         dialogueText =  transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         TurnOffDialogBox();
+        menuManager.SwitchToBattleMenu();
     }
     public void Dialog(string text) // Function 
     {
@@ -34,10 +35,15 @@ public class DialogueSystem : MonoBehaviour
             characterIndex++;
             timer = 0;
         }
-        if (timer > 2) TurnOffDialogBox();
+        if (timer >= 2 && dialogBoxStatus && !menuManager.inBattleSequence) TurnOffDialogBox();
+        if (timer >= 2 && menuManager.inBattleSequence && dialogBoxStatus)
+        {
+            TurnOffDialogBoxInBattle();
+        };
     }
     private void TurnOnDialogueBox()
     {
+        menuManager.TurnOffUI();
         dialogueText.text = "";
         timer = 0;
         characterIndex = 0;
@@ -45,7 +51,13 @@ public class DialogueSystem : MonoBehaviour
     }
     private void TurnOffDialogBox()
     {
-        if (dialogBoxStatus == true) menuManager.SwitchToBattleMenu();
+        menuManager.SwitchToBattleMenu();
+        dialogBoxStatus = false;
+        dialogueText.text = string.Empty;
+        for (int i = 0; i < transform.childCount; i++) transform.GetChild(i).gameObject.SetActive(false);
+    }private void TurnOffDialogBoxInBattle()
+    {
+        menuManager.ShowOnlyHPCard();
         dialogBoxStatus = false;
         dialogueText.text = string.Empty;
         for (int i = 0; i < transform.childCount; i++) transform.GetChild(i).gameObject.SetActive(false);
