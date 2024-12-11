@@ -65,5 +65,22 @@ Wat hebben we nodig om goede footage te krijgen die later ook te analyseren is?
 
 We willen een webcam waarbij de user goed zichtbaar is, ook willen we een beeld van het toetsenbord zodat we kunnen zien welke toetsen de user gebruikt om onze game te spelen.
 
+# Skill 8
 
+onduidelijkheid over de nummers op de dozen 
+commentaar op niet kunnen lopen door de physics
+onduidelijkheid over het starten van de trein
+onduidelijkheid over het kapotgaan van de dozen
 
+het niet lopen als de trein beweegt zorgt ervoor dat je de kolen niet kan bewegen naar voren
+Zorg ervoor dat je kan lopen terwijl de trein beweegt
+
+er was veel onduidelijkheid dus misschien meer tutorials over de controls en wat je kan doen
+Een tutorial maken informatie geven op een subtiele manier
+
+fun factor mag wat hoger misschien wat meer high pace iets meer dan alleen dozen afleveren.
+Een timer toevoegen zodat je haast hebt en sneller moet zijn om je trein te halen
+
+10:00 - 15:00
+
+De test footage vonden we wel goed te observeren omdat er camera waren naar de spelers zodat we hun IRL reactie konden zien de camera beelden bedekte ook niet de gameplay dus we konden alles zien
