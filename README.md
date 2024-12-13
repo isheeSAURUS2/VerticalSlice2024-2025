@@ -97,3 +97,17 @@ Een timer toevoegen zodat je haast hebt en sneller moet zijn om je trein te hale
 
 
 De test footage vonden we wel goed te observeren omdat er camera waren naar de spelers zodat we hun IRL reactie konden zien de camera beelden bedekte ook niet de gameplay dus we konden alles zien
+
+
+
+
+
+
+
+
+
+
+# Comment Conventions
+
+
+Elke functie bevat een comment over de Functie hier in wordt goed uitgelegd wat de functie doet en je begrijpt gelijk waarom de functie er is
