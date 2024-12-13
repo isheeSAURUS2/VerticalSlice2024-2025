@@ -20,8 +20,8 @@ public class Pokemon : MonoBehaviour
     public float poisonDamage = 6.25f;
     [SerializeField] private FightManager battleManager;
     [SerializeField] private Skillmanager skillManager = new Skillmanager();
-    public enum PKMType{Water, Fire, Ground, Flying, Steel, Fairy, Poison, Dragon, Rock, Psycic, Electric, Fighting, Grass, Dark, Ghost, Bug, Ice, Normal};
-    public PKMType[] type;
+    public enum PokemonType{Water, Fire, Ground, Flying, Steel, Fairy, Poison, Dragon, Rock, Psycic, Electric, Fighting, Grass, Dark, Ghost, Bug, Ice, Normal};
+    public PokemonType[] type;
     [SerializeField] Slider healthBar;
     [SerializeField] GameObject healthBarFill;
     Color orange = new Color(1, 0.6f, 0, 1);
