@@ -4,24 +4,12 @@ using UnityEngine;
 
 public class PokemonSwitch : MonoBehaviour
 {
-    [SerializeField] GameObject pokemonUI;
-    [SerializeField] GameObject SnorlaxUI;
     [SerializeField] GameObject SnorlaxSpawn;
     [SerializeField] GameObject ToxtricitySpawn;
     public void Snorlax()
     {
         SnorlaxSpawn.SetActive(true);
         ToxtricitySpawn.SetActive(false);
-    }
-    public void PokemonSelector()
-    { 
-        pokemonUI.SetActive(true);
-        SnorlaxUI.SetActive(true);
-    }
-    public void pokemonDeSelector() 
-    {
-        pokemonUI.SetActive(false);
-        SnorlaxUI.SetActive(false);
     }
     public void Toxtricity() 
     {

@@ -9,10 +9,19 @@ public class ButtonsManagement : MonoBehaviour
     [SerializeField] bool isMainButton;
     [SerializeField] TextMeshProUGUI thisText;
     [SerializeField] GameObject selectorArrow;
+    [SerializeField] bool isInPokemonMenu;
     private void Start()
     {
         thisText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         selectorArrow = transform.GetChild(1).gameObject;
+        if (isInPokemonMenu)
+        {
+            selectorArrow.GetComponent<Animator>().Play("idlePokemonMenu");
+        }
+        else
+        {
+            selectorArrow.GetComponent<Animator>().Play("idle");
+        }
 
     }
     // Update is called once per frame
