@@ -13,7 +13,7 @@ public class ButtonsManagement : MonoBehaviour
     private void Start()
     {
         thisText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        selectorArrow = transform.GetChild(1).gameObject;
+        selectorArrow = transform.GetChild(1).gameObject.transform.GetChild(0).gameObject;
         if (isInPokemonMenu)
         {
             selectorArrow.GetComponent<Animator>().Play("idlePokemonMenu");
