@@ -8,7 +8,7 @@ using UnityEngine;
 public class FightManager : MonoBehaviour
 {
     [SerializeField] private Pokemon friendlyPokemon, enemyPokemon;
-    [SerializeField] private List<Pokemon.PKMType> enemyPKMType, friendlyPKMType = new List<Pokemon.PKMType>();
+    [SerializeField] private List<Pokemon.PokemonType> enemyPokemonType, friendlyPokemonType = new List<Pokemon.PokemonType>();
     [SerializeField] private MenuManager menuManager;
     [SerializeField] private DialogueSystem dialogueManager;
     [SerializeField] private Skillmanager skillmanager = new Skillmanager();
@@ -16,34 +16,31 @@ public class FightManager : MonoBehaviour
     [SerializeField] private Animator enemyAnimator;
     bool isYourTurn = true;
     Pokemon target, caster;
-    public int turnIndex;
     private void Start()
     {
         playerAnimator = friendlyPokemon.GetComponent<Animator>();
         menuManager.SwitchToBattleMenu();
-        //enemyAnimator = enemyAnimator.GetComponent<Animator>();
-        //PokemonAttackSequence(5f);
     }
-    public float DoSkill(int pp, float power, int accuracy, Skillmanager.moveType moveType, bool isSpecial, Skillmanager.StatusEffect statusType, Pokemon caster, Pokemon target)
+    public float DoSkill(int pp, float power, int accuracy, Skillmanager.moveType moveType, bool isSpecial, Skillmanager.StatusEffect statusType, Pokemon caster, Pokemon target) // Calculating the damage with given variables
     {
         float isMiss = UnityEngine.Random.Range(0, 100);
         float isCrit = UnityEngine.Random.Range(0, 100);
         float effectivenessMult = 1;
         float random = UnityEngine.Random.Range(85, 100);
         float damage = 0f;
-        if (moveType == Skillmanager.moveType.Poison && target.type[0] == Pokemon.PKMType.Fairy && target.type[1] == Pokemon.PKMType.Grass)
+        if (moveType == Skillmanager.moveType.Poison && target.type[0] == Pokemon.PokemonType.Fairy && target.type[1] == Pokemon.PokemonType.Grass)
         {
            effectivenessMult += 3;
         }
-        if (moveType == Skillmanager.moveType.Fairy && target.type[0] == Pokemon.PKMType.Poison || target.type[1] == Pokemon.PKMType.Poison)
+        if (moveType == Skillmanager.moveType.Fairy && target.type[0] == Pokemon.PokemonType.Poison || target.type[1] == Pokemon.PokemonType.Poison)
         {
             effectivenessMult -= 0.5f;
         }
-        if (moveType == Skillmanager.moveType.Grass && target.type[0] == Pokemon.PKMType.Poison || target.type[1] == Pokemon.PKMType.Poison)
+        if (moveType == Skillmanager.moveType.Grass && target.type[0] == Pokemon.PokemonType.Poison || target.type[1] == Pokemon.PokemonType.Poison)
         {
             effectivenessMult -= 0.5f;
         }
-        if (moveType == Skillmanager.moveType.Electric && target.type[0] == Pokemon.PKMType.Grass || target.type[1] == Pokemon.PKMType.Grass)
+        if (moveType == Skillmanager.moveType.Electric && target.type[0] == Pokemon.PokemonType.Grass || target.type[1] == Pokemon.PokemonType.Grass)
         {
             effectivenessMult -= 0.5f;
         }
@@ -102,9 +99,8 @@ public class FightManager : MonoBehaviour
         Debug.Log("damage is "+damage);
         return damage;
     }
-    public IEnumerator PokemonAttackSequence(int pp, float power, int accuracy, Skillmanager.moveType moveType, bool isSpecial, Skillmanager.StatusEffect statustype,Pokemon player,Pokemon enemy)
+    public IEnumerator PokemonAttackSequence(int pp, float power, int accuracy, Skillmanager.moveType moveType, bool isSpecial, Skillmanager.StatusEffect statustype,Pokemon player,Pokemon enemy) // Pokemon attack sequence in order
     {
-        // texbox
         menuManager.inBattleSequence = true;
         
         
@@ -135,32 +131,32 @@ public class FightManager : MonoBehaviour
         menuManager.inBattleSequence = false;
         menuManager.SwitchToBattleMenu(); // End battle scene
     }
-    public float EnemyMove()
+    public float EnemyMove() // Enemy chooses a random move and returns the damage value
     {
         float random;
         random = UnityEngine.Random.Range(0, 3);
         random = Mathf.Round(random);
         if (random == 0) 
         {
-            dialogueManager.Dialog("Shiinotic used Poison Powder");
+            dialogueManager.Dialogue("Shiinotic used Poison Powder");
             
             return DoSkill(skillmanager.PoisonPowderPP, 0, 100, Skillmanager.moveType.Poison, true, Skillmanager.StatusEffect.poison, enemyPokemon, friendlyPokemon);
         }
         if (random == 1)
         {
-            dialogueManager.Dialog("Shiinotic used Dazzling Gleam");
+            dialogueManager.Dialogue("Shiinotic used Dazzling Gleam");
             
             return DoSkill(skillmanager.DazzlingGleamPP, 80, 100, Skillmanager.moveType.Fairy, true, Skillmanager.StatusEffect.none, enemyPokemon, friendlyPokemon);
         }
         if (random == 2)
         {
-            dialogueManager.Dialog("Shiinotic used Strength Sap");
+            dialogueManager.Dialogue("Shiinotic used Strength Sap");
             
             return DoSkill(skillmanager.StrengthSapPP, 0, 100, Skillmanager.moveType.Grass, true, Skillmanager.StatusEffect.ATKDown, enemyPokemon, friendlyPokemon);
         }
         if (random == 3)
         {
-            dialogueManager.Dialog("Shiinotic used Giga Drain");
+            dialogueManager.Dialogue("Shiinotic used Giga Drain");
             
             return DoSkill(skillmanager.GigaDrainPP, 75, 100, Skillmanager.moveType.Grass, true, Skillmanager.StatusEffect.HealFromDamage, enemyPokemon, friendlyPokemon);
         }
