@@ -53,11 +53,6 @@ public class Pokemon : MonoBehaviour
         {
             healthPoints = maxHealthPoints;
         }
-        if(battleManager.turnIndex != thisPokemonTurnIndex && !wasPoisonedThisTurn)
-        {
-            Poison();
-            wasPoisonedThisTurn = true;
-        }
     }
     private void Poison()
     {
