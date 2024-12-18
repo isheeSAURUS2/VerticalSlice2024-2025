@@ -33,28 +33,28 @@ public class Skillmanager : MonoBehaviour
 
     public void Toxic()
     {
-        dialogBox.Dialog("Toxtricity used Toxic.");
+        dialogBox.Dialogue("Toxtricity used Toxic.");
         StartCoroutine(BM.PokemonAttackSequence(ToxicPP, 0, 100, moveType.Poison, true, StatusEffect.poison, playerPokemon, enemyPokemon));
         ToxicPP--;
         TurnOffFightMenu();
     }
     public void VenoShock()
     {
-        dialogBox.Dialog("Toxtricity used Venoshock.");
+        dialogBox.Dialogue("Toxtricity used Venoshock.");
         StartCoroutine(BM.PokemonAttackSequence(VenoShockPP,65,100,moveType.Poison,true,StatusEffect.none,playerPokemon,enemyPokemon));
         VenoShockPP--;
         TurnOffFightMenu();
     }
     public void Spark()
     {
-        dialogBox.Dialog("Toxtricity used Spark.");
+        dialogBox.Dialogue("Toxtricity used Spark.");
         StartCoroutine(BM.PokemonAttackSequence(SparkPP, 65, 100, moveType.Electric, true, StatusEffect.none, playerPokemon, enemyPokemon));
         SparkPP--;
         TurnOffFightMenu();
     }
     public void Discharge()
     {
-        dialogBox.Dialog("Toxtricity used Discharge.");
+        dialogBox.Dialogue("Toxtricity used Discharge.");
         StartCoroutine(BM.PokemonAttackSequence(DischargePP, 80, 100, moveType.Electric, true, StatusEffect.none, playerPokemon, enemyPokemon));
         DischargePP--;
         TurnOffFightMenu();
