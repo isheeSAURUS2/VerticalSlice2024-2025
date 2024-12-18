@@ -2161,14 +2161,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   friendlyPokemon: {fileID: 1017505372}
   enemyPokemon: {fileID: 665197931}
-  enemyPKMType: 
-  friendlyPKMType: 
+  enemyPokemonType: 
+  friendlyPokemonType: 
   menuManager: {fileID: 1093846045}
   dialogueManager: {fileID: 1621737683}
   skillmanager: {fileID: 1260053717}
   playerAnimator: {fileID: 1017505373}
   enemyAnimator: {fileID: 665197932}
-  turnIndex: 0
 --- !u!4 &523761596
 Transform:
   m_ObjectHideFlags: 0
@@ -3752,8 +3751,8 @@ MonoBehaviour:
   fightMenuStartButton: {fileID: 440218193}
   battleMenu: {fileID: 893468416}
   fightMenu: {fileID: 1848588752}
-  EnemyHPCard: {fileID: 1301431171}
-  PlayerHPCard: {fileID: 539377719}
+  enemyHealthCard: {fileID: 1301431171}
+  playerHealthCard: {fileID: 539377719}
   inBattleSequence: 0
 --- !u!1 &1194273344
 GameObject:
