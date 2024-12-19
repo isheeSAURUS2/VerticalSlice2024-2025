@@ -7,9 +7,10 @@ using UnityEngine.EventSystems;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] GameObject battleMenuStartButton, fightMenuStartButton;
+    [SerializeField] GameObject battleMenuStartButton, fightMenuStartButton, pokemonMenuStartButton;
     [SerializeField] GameObject battleMenu, fightMenu;
     [SerializeField] GameObject EnemyHPCard, PlayerHPCard;
+    [SerializeField] GameObject pokemonUI, SnorlaxUI;
     bool isInBattleMenu = true;
     public bool inBattleSequence = false;
     void Update()
@@ -42,6 +43,8 @@ public class MenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(battleMenuStartButton);
         fightMenu.SetActive(false);
         battleMenu.SetActive(true);
+        pokemonUI.SetActive(false);
+        SnorlaxUI.SetActive(false);
     }
     public void SwitchToFightMenu()
     {
@@ -50,11 +53,15 @@ public class MenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(fightMenuStartButton);
         fightMenu.SetActive(true);
         battleMenu.SetActive(false);
+        pokemonUI.SetActive(false);
+        SnorlaxUI.SetActive(false);
     }
     public void TurnOffFightMenu()
     {
         fightMenu.SetActive(false);
         battleMenu.SetActive(false);
+        pokemonUI.SetActive(false);
+        SnorlaxUI.SetActive(false);
     }
     public void TurnOffUI()
     {
@@ -63,11 +70,24 @@ public class MenuManager : MonoBehaviour
         {
             Menu[i].SetActive(false);
         }
+        pokemonUI.SetActive(false);
+        SnorlaxUI.SetActive(false);
     }
     public void ShowOnlyHPCard()
     {
         EnemyHPCard.SetActive(true);
         PlayerHPCard.SetActive(true);
+        fightMenu.SetActive(false);
+        battleMenu.SetActive(false);
+    }
+    public void SwitchToPokemonMenu()
+    {
+        pokemonUI.SetActive(true);
+        SnorlaxUI.SetActive(true);
+        EnemyHPCard.SetActive(false);
+        PlayerHPCard.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(pokemonMenuStartButton);
         fightMenu.SetActive(false);
         battleMenu.SetActive(false);
     }
