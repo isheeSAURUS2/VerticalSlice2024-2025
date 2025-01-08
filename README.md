@@ -100,6 +100,10 @@ De test footage vonden we wel goed te observeren omdat er camera waren naar de s
 
 
 
+![visual sheet adaptive healthbar](https://github.com/isheeSAURUS2/VerticalSlice2024-2025/blob/main/HPBARcolorVisualSheet.png)
+
+
+
 
 
 
