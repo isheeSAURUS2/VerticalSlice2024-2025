@@ -100,18 +100,13 @@ De test footage vonden we wel goed te observeren omdat er camera waren naar de s
 
 
 
-![visual sheet adaptive healthbar](https://github.com/isheeSAURUS2/VerticalSlice2024-2025/blob/main/HPBARcolorVisualSheet.png)
-
-
-
-
-
-
-
-
-
-
 # Comment Conventions
 
 
 Elke functie bevat een comment over de Functie hier in wordt goed uitgelegd wat de functie doet en je begrijpt gelijk waarom de functie er is
+
+
+
+# Visual Sheets
+
+![visual sheet adaptive healthbar](https://github.com/isheeSAURUS2/VerticalSlice2024-2025/blob/main/HPBARcolorVisualSheet.png)
