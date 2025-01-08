@@ -9,11 +9,23 @@ public class Death : MonoBehaviour
     public Animator enemyPokemonAnimator, playerPokemonAnimator;
     float timer;
     float lerpTimer;
-    IEnumerator DeathSequence(bool isPlayer)
+    bool isFading;
+
+    private void Update()
     {
-        while (true) {
+        if (isFading)
+        {
             timer += Time.deltaTime;
-            
+
+            if (timer >= 4)
+            {
+                SceneManager.LoadScene(0);
+            }
+        }
+    }
+    void DeathSequence(bool isPlayer)
+    {
+                 
             if (isPlayer)
             {
                 playerPokemonAnimator.Play("PokemonDeath");
@@ -22,22 +34,19 @@ public class Death : MonoBehaviour
             {
                 enemyPokemonAnimator.Play("EnemyPokemonDeath");
             }
-            yield return new WaitForSeconds(1f);
-            //fadeToBlack.transform.localScale = Vector3.Lerp(new Vector3(0.1f, 0.1f, 0f), new Vector3(20f, 20f, 0f), (timer / 3f));
-            
+            isFading = true;
             Vector3 fadeToBlackSize = Vector3.Lerp(new Vector3(0f, 0f, 0f), new Vector3(2000f, 2000f, 0f), (timer / 3f));
             fadeToBlack.GetComponent<RectTransform>().sizeDelta = fadeToBlackSize;
-            yield return new WaitForSeconds(3f);
-            SceneManager.LoadScene(0);
-        }
+        
+        
     }
     public void KillPlayer()
     {
-        StartCoroutine(DeathSequence(true));
+        DeathSequence(true);
     }
     public void KillEnemy()
     {
-        StartCoroutine(DeathSequence(false));
+        DeathSequence(false);
     }
 
 }
