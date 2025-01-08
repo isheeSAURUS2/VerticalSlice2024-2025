@@ -110,3 +110,6 @@ Elke functie bevat een comment over de Functie hier in wordt goed uitgelegd wat 
 # Visual Sheets
 
 ![visual sheet adaptive healthbar](https://github.com/isheeSAURUS2/VerticalSlice2024-2025/blob/main/HPBARcolorVisualSheet.png)
+
+
+![visual sheet Dialog System](https://github.com/isheeSAURUS2/VerticalSlice2024-2025/blob/main/VisualSheet.png)
