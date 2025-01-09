@@ -17,7 +17,9 @@ public class Pokemon : MonoBehaviour
     public int level;
     public bool isPoisoned;
     public int thisPokemonTurnIndex;
+    public bool isFriendly;
     public float poisonDamage = 6.25f;
+    [SerializeField]private Death deathManager;
     [SerializeField] private FightManager battleManager;
     [SerializeField] private Skillmanager skillManager = new Skillmanager();
     public enum PokemonType{Water, Fire, Ground, Flying, Steel, Fairy, Poison, Dragon, Rock, Psycic, Electric, Fighting, Grass, Dark, Ghost, Bug, Ice, Normal};
@@ -52,6 +54,17 @@ public class Pokemon : MonoBehaviour
         if(healthPoints > maxHealthPoints)
         {
             healthPoints = maxHealthPoints;
+        }
+        if(healthPoints <= 0)
+        {
+            if (isFriendly)
+            {
+                deathManager.KillPlayer();
+            }
+            else
+            {
+                deathManager.KillEnemy();
+            }
         }
     }
     private void Poison()
