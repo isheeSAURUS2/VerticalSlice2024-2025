@@ -25346,6 +25346,7 @@ GameObject:
   - component: {fileID: 3437359797353868855}
   - component: {fileID: 3437359797353868841}
   - component: {fileID: 3437359797353868854}
+  - component: {fileID: 3437359797353868856}
   m_Layer: 5
   m_Name: FightSprite
   m_TagString: Untagged
@@ -25403,6 +25404,27 @@ RectTransform:
   m_AnchoredPosition: {x: -259.6667, y: 44.999992}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &3437359797353868856
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3437359797353868852}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce98d66a501ab5e468e8c82c7dc11a3d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3437359797459422106
 GameObject:
   m_ObjectHideFlags: 0
@@ -25625,6 +25647,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3437359797707384188}
+        m_TargetAssemblyTypeName: ButtonsManagement, Assembly-CSharp
+        m_MethodName: OnButtonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3437359797707384185
 GameObject:
   m_ObjectHideFlags: 0
@@ -25667,6 +25701,7 @@ MonoBehaviour:
   isMainButton: 1
   selectorArrow: {fileID: 0}
   isInPokemonMenu: 0
+  animator: {fileID: 3437359797353868856}
 --- !u!224 &3437359797707384189
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25950,6 +25985,7 @@ MonoBehaviour:
   isMainButton: 0
   selectorArrow: {fileID: 0}
   isInPokemonMenu: 0
+  animator: {fileID: 0}
 --- !u!1 &3437359797926602770
 GameObject:
   m_ObjectHideFlags: 0
@@ -26469,6 +26505,7 @@ MonoBehaviour:
   isMainButton: 0
   selectorArrow: {fileID: 0}
   isInPokemonMenu: 0
+  animator: {fileID: 0}
 --- !u!1 &3437359798169372390
 GameObject:
   m_ObjectHideFlags: 0
@@ -26861,6 +26898,7 @@ MonoBehaviour:
   isMainButton: 1
   selectorArrow: {fileID: 0}
   isInPokemonMenu: 0
+  animator: {fileID: 0}
 --- !u!1 &3437359798329085246
 GameObject:
   m_ObjectHideFlags: 0
@@ -26903,6 +26941,7 @@ MonoBehaviour:
   isMainButton: 1
   selectorArrow: {fileID: 0}
   isInPokemonMenu: 0
+  animator: {fileID: 0}
 --- !u!1 &3437359798336783988
 GameObject:
   m_ObjectHideFlags: 0
@@ -27344,6 +27383,7 @@ MonoBehaviour:
   isMainButton: 0
   selectorArrow: {fileID: 0}
   isInPokemonMenu: 0
+  animator: {fileID: 0}
 --- !u!224 &3437359798581756064
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27763,6 +27803,7 @@ MonoBehaviour:
   isMainButton: 0
   selectorArrow: {fileID: 0}
   isInPokemonMenu: 0
+  animator: {fileID: 0}
 --- !u!1 &3437359798748426004
 GameObject:
   m_ObjectHideFlags: 0
@@ -28582,6 +28623,7 @@ MonoBehaviour:
   isMainButton: 1
   selectorArrow: {fileID: 0}
   isInPokemonMenu: 0
+  animator: {fileID: 0}
 --- !u!222 &3437359798996030783
 CanvasRenderer:
   m_ObjectHideFlags: 0

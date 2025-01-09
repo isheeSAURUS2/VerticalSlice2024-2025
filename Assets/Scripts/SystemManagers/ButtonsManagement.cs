@@ -10,8 +10,10 @@ public class ButtonsManagement : MonoBehaviour
     //[SerializeField] TextMeshProUGUI thisText;
     [SerializeField] GameObject selectorArrow;
     [SerializeField] bool isInPokemonMenu;
+    [SerializeField] Animator animator;
     private void Start()
     {
+        animator = transform.GetChild(0).gameObject.GetComponent<Animator>();
         //thisText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         selectorArrow = transform.GetChild(1).gameObject.transform.GetChild(0).gameObject;
         if (isInPokemonMenu)
@@ -22,7 +24,6 @@ public class ButtonsManagement : MonoBehaviour
         {
             selectorArrow.GetComponent<Animator>().Play("idle");
         }
-
     }
     // Update is called once per frame
     void Update()
@@ -43,5 +44,9 @@ public class ButtonsManagement : MonoBehaviour
         {
             selectorArrow.SetActive(false);
         }  
+    }
+    public void OnButtonPress()
+    {
+        animator.Play("FightButtonAnimation");
     }
 }
