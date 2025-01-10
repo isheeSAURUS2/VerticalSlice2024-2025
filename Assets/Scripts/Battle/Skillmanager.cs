@@ -27,7 +27,7 @@ public class Skillmanager : MonoBehaviour
         HealFromDamage, 
         none
     };
-    public enum MoveType // ENUM
+    public enum moveType // ENUM
     { 
         Water, 
         Fire, 
