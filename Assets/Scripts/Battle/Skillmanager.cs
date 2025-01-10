@@ -20,8 +20,34 @@ public class Skillmanager : MonoBehaviour
     public int StrengthSapPP;
     public int GigaDrainPP;
     public List<Action> EnemySkills = new List<Action>();
-    public enum StatusEffect {poison, ATKDown,HealFromDamage, none};
-    public enum moveType { Water, Fire, Ground, Flying, Steel, Fairy, Poison, Dragon, Rock, Psycic, Electric, Fighting, Grass, Dark, Ghost, Bug, Ice, Normal }
+    public enum StatusEffect // ENUM
+    {
+        poison, 
+        ATKDown,
+        HealFromDamage, 
+        none
+    };
+    public enum moveType // ENUM
+    { 
+        Water, 
+        Fire, 
+        Ground, 
+        Flying, 
+        Steel, 
+        Fairy, 
+        Poison, 
+        Dragon, 
+        Rock, 
+        Psycic, 
+        Electric, 
+        Fighting, 
+        Grass, 
+        Dark, 
+        Ghost, 
+        Bug, 
+        Ice, 
+        Normal
+    }
     [SerializeField] private Pokemon playerPokemon, enemyPokemon;
     private void Start()
     {
