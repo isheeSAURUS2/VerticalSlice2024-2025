@@ -7,10 +7,9 @@ using UnityEngine.EventSystems;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] GameObject battleMenuStartButton, fightMenuStartButton, pokemonMenuStartButton;
+    [SerializeField] GameObject battleMenuStartButton, fightMenuStartButton;
     [SerializeField] GameObject battleMenu, fightMenu;
-    [SerializeField] GameObject EnemyHPCard, PlayerHPCard;
-    [SerializeField] GameObject pokemonUI, SnorlaxUI;
+    [SerializeField] GameObject enemyHealthCard, playerHealthCard;
     bool isInBattleMenu = true;
     public bool inBattleSequence = false;
     void Update()
@@ -22,7 +21,7 @@ public class MenuManager : MonoBehaviour
                 SwitchToBattleMenu();
             }
         }
-        if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1)|| Input.GetMouseButtonDown(0))
         {
             if (!isInBattleMenu)
             {
@@ -34,60 +33,41 @@ public class MenuManager : MonoBehaviour
             }
         }
     }
-    public void SwitchToBattleMenu()
+    public void SwitchToBattleMenu() // Turn off the fight menu and turn on the rest of UI
     {
-        EnemyHPCard.SetActive(true);
-        PlayerHPCard.SetActive(true);
+        enemyHealthCard.SetActive(true);
+        playerHealthCard.SetActive(true);
         isInBattleMenu = true;
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(battleMenuStartButton);
         fightMenu.SetActive(false);
         battleMenu.SetActive(true);
-        pokemonUI.SetActive(false);
-        SnorlaxUI.SetActive(false);
     }
-    public void SwitchToFightMenu()
+    public void SwitchToFightMenu() // Turn off the battle menu and turn on the rest of UI
     {
         isInBattleMenu = false;
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(fightMenuStartButton);
         fightMenu.SetActive(true);
         battleMenu.SetActive(false);
-        pokemonUI.SetActive(false);
-        SnorlaxUI.SetActive(false);
     }
-    public void TurnOffFightMenu()
+    public void TurnOffFightMenu() // Turn off both menus leave health cards 
     {
         fightMenu.SetActive(false);
         battleMenu.SetActive(false);
-        pokemonUI.SetActive(false);
-        SnorlaxUI.SetActive(false);
     }
-    public void TurnOffUI()
+    public void TurnOffUI() // Turn off all UI menus
     {
         GameObject[] Menu = GameObject.FindGameObjectsWithTag("UIToDeactivate");
         for (int i = 0; i < Menu.Length; i++)
         {
             Menu[i].SetActive(false);
         }
-        pokemonUI.SetActive(false);
-        SnorlaxUI.SetActive(false);
     }
-    public void ShowOnlyHealthCards()
+    public void ShowOnlyHealthCards() // Show only the health cards
     {
-        EnemyHPCard.SetActive(true);
-        PlayerHPCard.SetActive(true);
-        fightMenu.SetActive(false);
-        battleMenu.SetActive(false);
-    }
-    public void SwitchToPokemonMenu()
-    {
-        pokemonUI.SetActive(true);
-        SnorlaxUI.SetActive(true);
-        EnemyHPCard.SetActive(false);
-        PlayerHPCard.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(pokemonMenuStartButton);
+        enemyHealthCard.SetActive(true);
+        playerHealthCard.SetActive(true);
         fightMenu.SetActive(false);
         battleMenu.SetActive(false);
     }
