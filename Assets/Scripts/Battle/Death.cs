@@ -8,6 +8,7 @@ public class Death : MonoBehaviour
     public GameObject fadeToBlack;
     public Animator enemyPokemonAnimator, playerPokemonAnimator;
     float timer;
+    float delayTimer;
     float lerpTimer;
     bool isFading;
 
@@ -15,11 +16,15 @@ public class Death : MonoBehaviour
     {
         if (isFading)
         {
-            timer += Time.deltaTime;
-
-            if (timer >= 4)
+            delayTimer += Time.deltaTime;
+            if (delayTimer >= 2f)
             {
-                SceneManager.LoadScene(0);
+                timer += Time.deltaTime;
+
+                if (timer >= 4)
+                {
+                    SceneManager.LoadScene(0);
+                }
             }
         }
     }
@@ -35,10 +40,8 @@ public class Death : MonoBehaviour
                 enemyPokemonAnimator.Play("EnemyPokemonDeath");
             }
             isFading = true;
-            Vector3 fadeToBlackSize = Vector3.Lerp(new Vector3(0f, 0f, 0f), new Vector3(2000f, 2000f, 0f), (timer / 3f));
+            Vector3 fadeToBlackSize = Vector3.Lerp(new Vector3(0f, 0f, 0f), new Vector3(2000f, 2000f, 0f), (timer / 2f));
             fadeToBlack.GetComponent<RectTransform>().sizeDelta = fadeToBlackSize;
-        
-        
     }
     public void KillPlayer()
     {
