@@ -13,6 +13,7 @@ public class FightManager : MonoBehaviour
     [SerializeField] private Skillmanager skillmanager = new Skillmanager();
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private Animator enemyAnimator;
+    [SerializeField] private GameObject Camera1, Camera2, Camera3, Camera4;
     bool isYourTurn = true;
     Pokemon target, caster;
     private void Start()
@@ -71,7 +72,6 @@ public class FightManager : MonoBehaviour
                     {
                         damage = ((((((2 * caster.level) / 5) * power * (caster.attack / target.defense)) / 50) + 2) * (random / 100)) * effectivenessMult;
                     }
-
                 }
             }
             else
@@ -106,20 +106,31 @@ public class FightManager : MonoBehaviour
         float damage = 0;
         
         yield return new WaitForSeconds(1.9f);
+        Camera3.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
         playerAnimator.Play("PokemonAttackAnimationForNow"); // Play player attack Animation
+        yield return new WaitForSeconds(1f);
+        // Play Hurt Animation Shinotic
+        Camera3.SetActive(false);
+        Camera4.SetActive(true);
         damage = DoSkill(pp,power,accuracy,moveType, isSpecial, statustype, player, enemy);
-        yield return new WaitForSeconds(2); 
+        yield return new WaitForSeconds(1); 
         for (int i = 0; i < damage; i++)
         {
             enemy.healthPoints--;
             yield return new WaitForSeconds(0.01f);
         }
-        yield return new WaitForSeconds(4f);
+        Camera1.SetActive(true);
+        Camera4.SetActive(false);
+        yield return new WaitForSeconds(2.5f);
         damage = EnemyMove(); //textvox
-        
-        yield return new WaitForSeconds(2f);
+        Camera4.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
         enemyAnimator.Play("EnemyPokemonAttack"); // Play enemy attack Animation
-        
+        yield return new WaitForSeconds(1.6f);
+        Camera3.SetActive(true);
+        Camera4.SetActive(false);
+
         yield return new WaitForSeconds(2);
         for (int i = 0; i < damage; i++)
         {
@@ -127,6 +138,8 @@ public class FightManager : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         yield return new WaitForEndOfFrame();
+        Camera1.SetActive(true);
+        Camera3.SetActive(false);
         menuManager.inBattleSequence = false;
         menuManager.SwitchToBattleMenu(); // End battle scene
     }
