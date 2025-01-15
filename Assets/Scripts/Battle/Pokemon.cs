@@ -32,8 +32,8 @@ public class Pokemon : MonoBehaviour
     
     private void Start()
     {
-        
-        healthBar.maxValue = maxHealthPoints;
+
+        SetHealthBarMax();
     }
     private void Update()
     {
@@ -71,6 +71,10 @@ public class Pokemon : MonoBehaviour
     {
         healthPoints -= poisonDamage;
         poisonDamage += 6.25f;
+    }
+    public void SetHealthBarMax()
+    {
+        healthBar.maxValue = maxHealthPoints;
     }
 }
 
