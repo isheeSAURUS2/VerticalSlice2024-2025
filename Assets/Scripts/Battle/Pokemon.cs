@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Pokemon : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class Pokemon : MonoBehaviour
     public int thisPokemonTurnIndex;
     public bool isFriendly;
     public float poisonDamage = 6.25f;
+    [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField]private Death deathManager;
     [SerializeField] private FightManager battleManager;
     [SerializeField] private Skillmanager skillManager = new Skillmanager();
@@ -37,6 +39,9 @@ public class Pokemon : MonoBehaviour
     }
     private void Update()
     {
+        if (isFriendly) {
+            healthText.text = healthPoints.ToString() + "/" + maxHealthPoints.ToString();
+        }
         float healthPercentage = (healthPoints / maxHealthPoints) * 100;
         healthBar.value = healthPoints;
         if(healthPercentage <= 100 && healthPercentage > 50)
