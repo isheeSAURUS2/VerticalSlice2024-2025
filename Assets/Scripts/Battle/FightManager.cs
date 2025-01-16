@@ -14,6 +14,7 @@ public class FightManager : MonoBehaviour
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private Animator enemyAnimator;
     [SerializeField] private GameObject Camera1, Camera2, Camera3, Camera4;
+    [SerializeField] private GameObject PlayerAttackParticle, PlayerAttackHitParticle;
     bool isYourTurn = true;
     Pokemon target, caster;
     private void Start()
@@ -108,13 +109,16 @@ public class FightManager : MonoBehaviour
         Camera3.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         playerAnimator.Play("AttackAnimation"); // Play player attack Animation
-        //playerAnimator.SetBool("IsAttacking", false);
+        PlayerAttackParticle.SetActive(true);
         yield return new WaitForSeconds(1.5f);
+        PlayerAttackParticle.SetActive(false);
+        PlayerAttackHitParticle.SetActive(true);
         // Play Hurt Animation Shinotic
         Camera3.SetActive(false);
         Camera4.SetActive(true);
         damage = DoSkill(pp,power,accuracy,moveType, isSpecial, statustype, player, enemy);
-        yield return new WaitForSeconds(1); 
+        yield return new WaitForSeconds(1);
+        PlayerAttackHitParticle.SetActive(false);
         for (int i = 0; i < damage; i++)
         {
             enemy.healthPoints--;
