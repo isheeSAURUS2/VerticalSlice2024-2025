@@ -18,7 +18,6 @@ public class FightManager : MonoBehaviour
     Pokemon target, caster;
     private void Start()
     {
-        playerAnimator = friendlyPokemon.GetComponent<Animator>();
         menuManager.SwitchToBattleMenu();
     }
     public float DoSkill(int pp, float power, int accuracy, Skillmanager.moveType moveType, bool isSpecial, Skillmanager.StatusEffect statusType, Pokemon caster, Pokemon target) // Calculating the damage with given variables
@@ -108,8 +107,9 @@ public class FightManager : MonoBehaviour
         yield return new WaitForSeconds(1.9f);
         Camera3.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        playerAnimator.Play("PokemonAttackAnimationForNow"); // Play player attack Animation
-        yield return new WaitForSeconds(1f);
+        playerAnimator.Play("AttackAnimation"); // Play player attack Animation
+        //playerAnimator.SetBool("IsAttacking", false);
+        yield return new WaitForSeconds(1.5f);
         // Play Hurt Animation Shinotic
         Camera3.SetActive(false);
         Camera4.SetActive(true);
@@ -127,7 +127,8 @@ public class FightManager : MonoBehaviour
         Camera4.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         enemyAnimator.Play("EnemyPokemonAttack"); // Play enemy attack Animation
-        yield return new WaitForSeconds(1.6f);
+        yield return new WaitForSeconds(1.3f);
+        playerAnimator.Play("HitAnimation");
         Camera3.SetActive(true);
         Camera4.SetActive(false);
 
